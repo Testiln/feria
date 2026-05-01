@@ -1,5 +1,6 @@
 import React from 'react';
 import { ShoppingBag, ShoppingCart, Minus, Plus, X } from 'lucide-react';
+import ProductImage from './ProductImage';
 
 export default function MobileCartDrawer({ isMobileCartOpen, setIsMobileCartOpen, cart, cartItemsCount, cartTotal, handleQuantityChange, formatPrice, onCheckout, products }) {
   if (!isMobileCartOpen) return null;
@@ -27,7 +28,14 @@ export default function MobileCartDrawer({ isMobileCartOpen, setIsMobileCartOpen
                 const availableStock = Math.max(0, Number(product.stock || 0) - Number(product.reserved_stock || 0));
                 return (
                   <div key={id} className="flex gap-4">
-                    <div className="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden"><img src={product.image} className="w-full h-full object-cover" alt="" /></div>
+                    <div className="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden">
+                      <ProductImage
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-full"
+                        imgClassName="object-cover"
+                      />
+                    </div>
                     <div className="flex-1">
                       <p className="font-inter text-sm line-clamp-2">{product.name}</p>
                       <p className="font-montserrat font-bold text-[#C62828] text-sm mt-1">{formatPrice(product.price)}</p>

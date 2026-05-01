@@ -1,9 +1,5 @@
 import { supabase } from '../../../lib/supabaseClient'
 
-const FALLBACK_IMAGE =
-  'data:image/svg+xml;utf8,' +
-  encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="450" viewBox="0 0 600 450"><rect width="600" height="450" fill="#E5E5E5"/><text x="50%" y="50%" fill="#999999" font-family="Arial, sans-serif" font-size="28" text-anchor="middle" dominant-baseline="middle">Mueble</text></svg>')
-
 function normalizeProduct(product) {
   return {
     id: product.id,
@@ -12,7 +8,7 @@ function normalizeProduct(product) {
     price: Number(product.price ?? 0),
     stock: Number(product.stock ?? 0),
     reserved_stock: Number(product.reserved_stock ?? 0),
-    image: product.image_url || FALLBACK_IMAGE,
+    image: product.image_url || null,
     image_url: product.image_url,
     ecommerce_url: product.ecommerce_url,
     visible: Boolean(product.visible),

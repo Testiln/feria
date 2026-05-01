@@ -64,7 +64,7 @@ export default function ProductGrid({ filteredAndSortedProducts, cart, handleQua
 
   return (
     <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-2 sm:gap-3 md:gap-4 xl:gap-4 mb-8">
         {displayedProducts.map(product => {
           const qtyInCart = cart[product.id] || 0;
           

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ShoppingBag, ShoppingCart, Minus, Plus } from 'lucide-react';
+import ProductImage from './ProductImage';
 
 export default function CartSidebar({ cart, cartItemsCount, cartTotal, handleQuantityChange, formatPrice, onCheckout, products }) {
   return (
@@ -23,7 +24,12 @@ export default function CartSidebar({ cart, cartItemsCount, cartTotal, handleQua
               return (
                 <div key={id} className="flex gap-4">
                   <div className="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-gray-100 dark:bg-gray-800">
-                    <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+                    <ProductImage
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full"
+                      imgClassName="object-cover"
+                    />
                   </div>
                   <div className="flex-1 flex flex-col justify-center">
                     <p className="font-inter text-sm line-clamp-1">{product.name}</p>

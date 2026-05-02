@@ -25,7 +25,7 @@ export default function ProductsPage() {
   const { products, loading, error } = useProducts();
 
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortBy, setSortBy] = useState('name');
+  const [sortBy, setSortBy] = useState('recent');
   const [isMobileCartOpen, setIsMobileCartOpen] = useState(false);
   const [showScrollToTop, setShowScrollToTop] = useState(false);
 
@@ -48,6 +48,11 @@ export default function ProductsPage() {
       .sort((a, b) => {
         if (sortBy === 'price-low') return a.price - b.price;
         if (sortBy === 'price-high') return b.price - a.price;
+        if (sortBy === 'recent') {
+          const dateA = a.created_at ? new Date(a.created_at) : new Date(0);
+          const dateB = b.created_at ? new Date(b.created_at) : new Date(0);
+          return dateB - dateA; // Más recientes primero (descendente)
+        }
         return a.name.localeCompare(b.name);
       });
   }, [products, searchTerm, sortBy]);
@@ -112,6 +117,7 @@ export default function ProductsPage() {
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
               >
+                <option value="recent">Más recientes</option>
                 <option value="name">Nombre (A-Z)</option>
                 <option value="price-low">Menor precio</option>
                 <option value="price-high">Mayor precio</option>
